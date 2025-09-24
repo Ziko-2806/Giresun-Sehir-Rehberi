@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semantic HTML Görsel Demo</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #121821;
+      --muted: #8aa0b6;
+      --text: #e6edf3;
+      --accent: #58a6ff;
+      --border: #263242;
+      --chip: rgba(88,166,255,0.15);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% 0%, #101826, #0b0f14);
+      color: var(--text);
+    }
+    .container {
+      max-width: 1100px; margin: 24px auto; padding: 16px;
+    }
+    .hero {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      display: grid; gap: 8px;
+    }
+    .hero h1 { margin: 0; font-size: 22px; letter-spacing: 0.2px; }
+    .hero p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .toolbar {
+      margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      background: #0e141c; border: 1px solid var(--border); border-radius: 12px; padding: 10px;
+    }
+    .toolbar .group { display: inline-flex; gap: 8px; align-items: center; background: #0b1118; border: 1px solid var(--border); border-radius: 10px; padding: 6px 8px; }
+    label { font-size: 13px; color: var(--muted); }
+    .badge {
+      padding: 4px 8px; border-radius: 999px; background: var(--chip); color: var(--accent); border: 1px solid rgba(88,166,255,0.25);
+      font-size: 12px; font-weight: 600;
+    }
+
+    .grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; margin-top: 16px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+    .panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .panel-header { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--border); background: #0f1621; }
+    .panel-header h2 { margin: 0; font-size: 14px; letter-spacing: .2px; color: var(--muted); }
+    .panel-body { padding: 0; }
+
+    .viewport { position: relative; min-height: 520px; background: #0a0f15; }
+    .viewport-inner { padding: 14px; display: grid; gap: 12px; }
+
+    /* Demo layouts */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .region {
+      position: relative; border: 1px dashed #304158; border-radius: 14px; padding: 10px; background: rgba(255,255,255,0.01);
+    }
+    .region + .region { margin-top: 10px; }
+
+    .region[data-tag]::before {
+      content: attr(data-tag);
+      position: absolute; top: -10px; left: 12px; font-size: 11px; padding: 2px 6px; border-radius: 999px;
+      border: 1px solid rgba(88,166,255,0.35); background: rgba(88,166,255,0.12); color: var(--accent);
+      opacity: 0; transition: opacity .2s ease;
+    }
+    .show-labels .region[data-tag]::before { opacity: 1; }
+
+    .header { background: linear-gradient(180deg, rgba(88,166,255,0.08), transparent); }
+    .nav { background: linear-gradient(180deg, rgba(3,180,108,0.12), transparent); }
+    .main { background: linear-gradient(180deg, rgba(233, 196, 106, 0.12), transparent); }
+    .article { background: linear-gradient(180deg, rgba(244,162,97,0.12), transparent); }
+    .section { background: linear-gradient(180deg, rgba(151, 117, 250, 0.12), transparent); }
+    .aside { background: linear-gradient(180deg, rgba(52, 152, 219, 0.12), transparent); }
+    .footer { background: linear-gradient(180deg, rgba(231,76,60,0.12), transparent); }
+
+    .stack { display: grid; gap: 10px; }
+    .row { display: grid; gap: 10px; grid-template-columns: 2fr 1fr; }
+    @media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
+
+    .menu { display: flex; gap: 10px; flex-wrap: wrap; }
+    .menu a { text-decoration: none; color: var(--text); font-size: 13px; padding: 6px 8px; border-radius: 8px; background: #0b1118; border: 1px solid var(--border); }
+
+    .card { background: #0b1118; border: 1px solid var(--border); border-radius: 12px; padding: 10px; }
+    .card h3 { margin: 0 0 6px 0; font-size: 14px; }
+    .card p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    /* Sidebar (right) */
+    .sidebar { padding: 12px; display: grid; gap: 12px; }
+    .sidebar section { background: #0b1118; border: 1px solid var(--border); border-radius: 12px; padding: 10px; }
+    .sidebar h3 { margin: 0 0 8px 0; font-size: 14px; color: var(--muted); }
+    .list { display: grid; gap: 6px; font-size: 13px; color: var(--text); }
+    .list code { background: #0a0f15; border: 1px solid var(--border); border-radius: 8px; padding: 2px 6px; }
+
+    .kicker { display: inline-flex; gap: 8px; align-items: center; font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>Semantic HTML <span class="badge">canlı demo</span></h1>
+      <p>Soldaki önizlemede <strong>semantic etiketli</strong> bir sayfa ile sadece <strong>div</strong> kullanan sayfayı karşılaştır; üstteki kontrollerle etiket adlarını görünür yap.</p>
+    </div>
+
+    <div class="toolbar">
+      <div class="group" role="group" aria-label="Görünüm seçimi">
+        <label><input type="radio" name="mode" value="semantic" checked> Semantik görünüm</label>
+        <label><input type="radio" name="mode" value="div"> Div çorbası</label>
+      </div>
+      <div class="group" role="group" aria-label="Etiket gösterimi">
+        <label><input type="checkbox" id="toggle-labels"> Bölge etiketlerini göster</label>
+      </div>
+      <div class="group">
+        <span class="kicker">Toplam landmark sayısı: <strong id="lm-count">0</strong></span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="panel" id="preview-panel">
+        <div class="panel-header">
+          <h2>Önizleme</h2>
+          <span class="badge" id="view-label">Semantik</span>
+        </div>
+        <div class="panel-body">
+          <div class="viewport" id="viewport">
+            <div class="viewport-inner" id="viewportInner">
+              <!-- SEMANTIC VIEW -->
+              <div class="view active" id="semantic-view">
+                <header class="region header" data-tag="&lt;header&gt;">
+                  <h2 style="margin:0 0 6px 0">Başlık Alanı</h2>
+                  <nav class="region nav" aria-label="Ana gezinme" data-tag="&lt;nav&gt;">
+                    <div class="menu">
+                      <a href="#">Ana Sayfa</a>
+                      <a href="#">Blog</a>
+                      <a href="#">Projeler</a>
+                      <a href="#">İletişim</a>
+                    </div>
+                  </nav>
+                </header>
+
+                <div class="row">
+                  <main id="icerik" class="region main" data-tag="&lt;main&gt;">
+                    <div class="stack">
+                      <article class="region article" data-tag="&lt;article&gt;">
+                        <h3>Bir Blog Yazısı</h3>
+                        <p class="muted">Bu içerik tek başına anlamlıdır; başka yere kopyalasan da bir bütün olarak anlaşılır.</p>
+                        <div class="card"><h3>Özet</h3><p>Semantik etiketler; erişilebilirlik, SEO ve bakım kolaylığı sağlar.</p></div>
+                      </article>
+
+                      <section class="region section" data-tag="&lt;section&gt;">
+                        <h3>Popüler Konular</h3>
+                        <div class="stack">
+                          <div class="card"><h3>HTML</h3><p>Yapı ve anlam.</p></div>
+                          <div class="card"><h3>CSS</h3><p>Sunum ve stil.</p></div>
+                          <div class="card"><h3>JavaScript</h3><p>Davranış ve etkileşim.</p></div>
+                        </div>
+                      </section>
+                    </div>
+                  </main>
+
+                  <aside class="region aside" data-tag="&lt;aside&gt;">
+                    <h3>Yan İçerik</h3>
+                    <p>İlgili bağlantılar, reklamlar veya ek bilgiler.</p>
+                  </aside>
+                </div>
+
+                <footer class="region footer" data-tag="&lt;footer&gt;">
+                  <p>© 2025 Zikreddin • İletişim: mail@ornek.dev</p>
+                </footer>
+              </div>
+
+              <!-- DIV VIEW -->
+              <div class="view" id="div-view">
+                <div class="region header" data-tag="&lt;div class=\"header\"&gt;">
+                  <h2 style="margin:0 0 6px 0">Başlık Alanı</h2>
+                  <div class="region nav" data-tag="&lt;div class=\"nav\"&gt;">
+                    <div class="menu">
+                      <a href="#">Ana Sayfa</a>
+                      <a href="#">Blog</a>
+                      <a href="#">Projeler</a>
+                      <a href="#">İletişim</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="region main" data-tag="&lt;div class=\"main\"&gt;">
+                    <div class="stack">
+                      <div class="region article" data-tag="&lt;div class=\"article\"&gt;">
+                        <h3>Bir Blog Yazısı</h3>
+                        <p class="muted">Aynı içerik ama semantik anlamı belirsiz.</p>
+                        <div class="card"><h3>Özet</h3><p>Burada tarayıcıya bu alanın bir <em>makale</em> olduğunu söylemedik.</p></div>
+                      </div>
+
+                      <div class="region section" data-tag="&lt;div class=\"section\"&gt;">
+                        <h3>Popüler Konular</h3>
+                        <div class="stack">
+                          <div class="card"><h3>HTML</h3><p>Yapı ve anlam.</p></div>
+                          <div class="card"><h3>CSS</h3><p>Sunum ve stil.</p></div>
+                          <div class="card"><h3>JavaScript</h3><p>Davranış ve etkileşim.</p></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="region aside" data-tag="&lt;div class=\"aside\"&gt;">
+                    <h3>Yan İçerik</h3>
+                    <p>İlgili bağlantılar, reklamlar veya ek bilgiler.</p>
+                  </div>
+                </div>
+
+                <div class="region footer" data-tag="&lt;div class=\"footer\"&gt;">
+                  <p>© 2025 Zikreddin • İletişim: mail@ornek.dev</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Açıklamalar</h2>
+        </div>
+        <div class="panel-body">
+          <div class="sidebar">
+            <section>
+              <h3>Neden semantik?</h3>
+              <div class="list">
+                <div>• <strong>Erişilebilirlik</strong>: Ekran okuyucular <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code> gibi <em>landmark</em> bölgeleri doğrudan tanır.</div>
+                <div>• <strong>SEO</strong>: Arama motorları, içeriğin amacını daha iyi anlar.</div>
+                <div>• <strong>Bakım</strong>: Kod okunurluğu artar; ekip çalışmasında anlaşılır yapı.</div>
+              </div>
+            </section>
+            <section>
+              <h3>Landmark haritası</h3>
+              <div class="list" id="landmarks"></div>
+            </section>
+            <section>
+              <h3>Denemeler</h3>
+              <div class="list">
+                <div>1) "Div çorbası" görünümüne geçip <em>landmark sayısını</em> karşılaştır.</div>
+                <div>2) <code>&lt;section&gt;</code> içine yeni bir başlık ve liste ekle, farkı gör.</div>
+                <div>3) <code>&lt;article&gt;</code> içine ikinci bir yazı bloğu ekle ve mantığını düşün.</div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modeRadios = document.querySelectorAll('input[name="mode"]');
+    const toggleLabels = document.getElementById('toggle-labels');
+    const viewportInner = document.getElementById('viewportInner');
+    const semanticView = document.getElementById('semantic-view');
+    const divView = document.getElementById('div-view');
+    const viewLabel = document.getElementById('view-label');
+    const lmCount = document.getElementById('lm-count');
+    const landmarksEl = document.getElementById('landmarks');
+
+    function setMode(val){
+      semanticView.classList.toggle('active', val === 'semantic');
+      divView.classList.toggle('active', val === 'div');
+      viewLabel.textContent = val === 'semantic' ? 'Semantik' : 'Div';
+      updateLandmarks();
+    }
+
+    function updateLabels(){
+      document.getElementById('viewport').classList.toggle('show-labels', toggleLabels.checked);
+    }
+
+    function updateLandmarks(){
+      const active = semanticView.classList.contains('active') ? semanticView : divView;
+      const tags = Array.from(active.querySelectorAll('header, nav, main, aside, footer'));
+      lmCount.textContent = tags.length;
+
+      const map = { header: 'banner', nav: 'navigation', main: 'main', aside: 'complementary', footer: 'contentinfo' };
+      landmarksEl.innerHTML = tags.map(el => {
+        const tag = el.tagName.toLowerCase();
+        const role = map[tag];
+        return `<div>• <code>&lt;${tag}&gt;</code> → <strong>${role}</strong></div>`;
+      }).join('');
+    }
+
+    modeRadios.forEach(r => r.addEventListener('change', e => setMode(e.target.value)));
+    toggleLabels.addEventListener('change', updateLabels);
+
+    // init
+    updateLabels();
+    updateLandmarks();
+  </script>
+</body>
+</html>

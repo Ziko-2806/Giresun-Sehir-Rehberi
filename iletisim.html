@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- üst kısım -->
+    <header>
+        <h1>Giresun Şehir Rehberi</h1>
+    
+    <hr>
+    <nav aria-label="Ana Gezinme">
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="mekanlar.html">Mekanlar</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="blog-yaz.html">Yazı Gönderme</a></li>
+            <li><a href="blog.html">Blog</a></li>      
+        </ul>
+        
+    </nav>
+    </header>
+    <hr>
+    <main>
+        <section>
+            <h2>Bize Ulaşın</h2>
+            <p>Lütfen aşağıdaki alanları eksiksiz bir şekilde doldurun.</p>
+            <form action="/" method="post">
+            <!-- Kişisel Bilgiler -->
+            <fieldset>
+                <legend>Kişisel Bilgiler</legend>
+                <label for="ad">Ad Soyad</label>
+                <input type="text" id="ad" name="ad" autocomplete="name" required>
+                <br>
+                <br>
+                <label for="email">E-posta</label>
+                <input id="email" type="email" name="email" inputmode="email" autocomplete="email" required>
+                <br>
+                <br>
+                <label for="tel">Telefon Numarası</label>
+                <input type="text" id="tel" name="tel" inputmode="tel">
+                <br>
+                <br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Mesaj</legend>
+                <label for="konu">Konu</label>
+                <select id="konular" name="konu" required>
+                    <option value="">Bir Konu Seçin</option>
+                    <option value="öneri">Öneri</option>
+                    <option value="sikayet">Şikayet</option>
+                    <option value="bilgi">Bilgi Alma</option> 
+                    <option value="isbirliği">İş Birliği</option>
+                </select>
+                <br>
+                <br>
+                <label for="mesaj">Mesaj</label>
+                <textarea id="mesaj" name="mesaj" rows="15" cols="60"  maxlength="1000" required> </textarea>
+                <small id="mesaj-ipu">En fazla 1000 karakter.</small>
+                <br>
+                <br>
+                <label for="ek">Ek Dosya (Opsiyonel)</label>
+                <input type="file" id="ek" name="ek">
+                <br>
+                <br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Onay</legend>
+                <input type="checkbox" name="kvkk" id="kvkk" required>
+                <label for="kvkk"><a href="belgeler/kvkk.pdf" target="_blank">
+                KVKK metnini okudum kabul ediyorum</a>
+                </label>
+                
+                <br>
+                <br>
+                <button type="submit">Gönder</button>
+                <button type="reset">Temizle</button>
+            </fieldset>
+            </form>
+        </section>
+
+        <aside aria-label="Diğer İletişim Yolları">
+            <h2>Alternatif Kanallar</h2>
+            <address>
+                Hacımiktat Mah. Tabaklar Sok. No:1 GİRESUN
+                <br>
+                <br>
+                Belediye İletişim Numarası: <a href="tel:444 4 028">
+                444 4 028 </a>
+                <br>
+                <br>
+                Belediye İletişim Mail Adresi: <a href="mailto:halklailiskiler@giresun.bel.tr">halklailiskiler@giresun.bel.tr</a>
+            </address>
+         </aside>
+    </main>
+<hr>
+    <footer>
+        <p>  <a href="">Başa Dön</a></p>
+        <p>Zikreddin Durmuş <a href=""> Zikreddin Durmuş Kişisel Site(Yakında)</a></p>
+    </footer>
+</body>
+</html>
