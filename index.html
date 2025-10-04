@@ -2,66 +2,67 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content=""Şehrin mekanları, etkinlikleri ve blog yazıları." ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giresun Şehir Rehberi</title>
     <link rel="icon" href="/icons/favicon.ico">
+    <link rel="stylesheet" href="verdant.css">
 </head>
 
 <body>
     <!-- üst kısım -->
     <header>
         <h1>Giresun Şehir Rehberi</h1>
-    
-    <hr>
-    <nav aria-label="Ana Gezinme">
-        <ul>
-            <li><a href="mekanlar.html">Mekanlar</a></li>
-            <li><a href="galeri.html">Galeri</a></li>
-            <li><a href="blog-yaz.html">Yazı Gönderme</a></li>
-            <li><a href="iletisim.html">İletişim</a></li>
-            <li><a href="blog.html">Blog</a></li>
-        </ul>
-        
-    </nav>
+        <nav aria-label="Ana Gezinme">
+            <ul>
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="mekanlar.html">Mekanlar</a></li>
+                <li><a href="galeri.html">Galeri</a></li>
+                <li><a href="blog-yaz.html">Yazı Gönderme</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
     </header>
-    <hr>
     <!-- Ana İçerik -->
     <main>
         <!-- Öne Çıkarılan Bölüm -->
-        <section>
+        <section class="featured-section">
             <h2>Öne Çıkanlar</h2>
-
-            <article>
-                <h3>Şehrin En Güzel Parkı</h3>
-                <figure>
-                    <a href="mekanlar.html#o1">
-                        <img  width="500" height="400" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/9b/41/71/mavigol.jpg?w=800&h=-1&s=1" alt="Mavigöl Kuzalan Şelalesi">
-                    </a>
-                    <figcaption>Mavigöl Kuzalan Şelalesi- Doğa gezisi için mükemmel !</figcaption>
-                </figure>
-            </article>
-
-            <article>
-                <h3>Şehrin En İyi Restoranı</h3>
-                <figure>
-                    <a href="mekanlar.html#o3">
-                        <img width="500" height="400"  src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/4d/71/a2/ic-mekan.jpg?w=1100&h=600&s=1" alt ="Giresun Sanayiciler ve İş Adamlari Derneği">
-                    </a>
-                    <figcaption>Giresun Sanayiciler ve İş Adamlari Derneği şehrin en iyi yorum alan restoranlarından biri, bir şans vermelisiniz.</figcaption>
-
-                </figure>
-            </article>
-
-            <article>
-                <h3>Şehrin Güzel Doğal Manzaraları</h3>
-                <figure>
-                    <a href="mekanlar.html#o2">
-                        <img  width="500" height="400" src="https://www.giresunileri.com/images/galeri/2024/05/14664446121714993734.jpg" alt="Bektaş Yaylası Manzarası">
-                    </a>
-                    <figcaption>Giresunun en güzel manzaralarına sahip olan Bektaş Yaylası doğal güzelliğiyle ön plana çıkıyor, kesinlikle gittiğinize değecek !</figcaption>
-                </figure>
-            </article>
-
+            <div class="grid auto">
+                <article class="place">
+                    <div>
+                        <h3>Şehrin En Güzel Parkı</h3>
+                        <figure>
+                            <a href="mekanlar.html#o1">
+                                <img width="950" height="420" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/9b/41/71/mavigol.jpg?w=800&h=-1&s=1" alt="Mavigöl Kuzalan Şelalesi">
+                            </a>
+                            <figcaption>Mavigöl Kuzalan Şelalesi- Doğa gezisi için mükemmel !</figcaption>
+                        </figure>
+                    </div>
+                </article>
+                <article class="place">
+                    <div>
+                        <h3>Şehrin En İyi Restoranı</h3>
+                        <figure>
+                            <a href="mekanlar.html#o3">
+                                <img width="950" height="420" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/4d/71/a2/ic-mekan.jpg?w=1100&h=600&s=1" alt="Giresun Sanayiciler ve İş Adamlari Derneği">
+                            </a>
+                            <figcaption>Giresun Sanayiciler ve İş Adamlari Derneği şehrin en iyi yorum alan restoranlarından biri, bir şans vermelisiniz.</figcaption>
+                        </figure>
+                    </div>
+                </article>
+                <article class="place">
+                    <div>
+                        <h3>Şehrin Güzel Doğal Manzaraları</h3>
+                        <figure>
+                            <a href="mekanlar.html#o2">
+                                <img width="950" height="420" src="https://www.giresunileri.com/images/galeri/2024/05/14664446121714993734.jpg" alt="Bektaş Yaylası Manzarası">
+                            </a>
+                            <figcaption>Giresunun en güzel manzaralarına sahip olan Bektaş Yaylası doğal güzelliğiyle ön plana çıkıyor, kesinlikle gittiğinize değecek !</figcaption>
+                        </figure>
+                    </div>
+                </article>
+            </div>
         </section>
     </main>
 
