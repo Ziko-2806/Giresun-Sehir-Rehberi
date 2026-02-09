@@ -15,6 +15,6 @@ Bu proje, kullanıcı dostu yapısı ile şehir hakkında hızlıca bilgi edinme
 ## 🛠️ Kullanılan Teknolojiler
 - HTML
 - CSS
-- JavaScript
+
 
 
